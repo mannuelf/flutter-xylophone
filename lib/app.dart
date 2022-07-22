@@ -10,67 +10,39 @@ class App extends StatelessWidget {
     await player.setSourceAsset(soundFile);
   }
 
+  Expanded buildKey(String soundFile, Color color) {
+    return Expanded(
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(primary: color),
+            onPressed: () async {
+              _playSound(soundFile);
+            },
+            child: const Text('Play')));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      debugShowMaterialGrid: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Xylophone'),
-        ),
-        body: SafeArea(
-          child: Center(
+        debugShowCheckedModeBanner: false,
+        debugShowMaterialGrid: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Xylophone'),
+          ),
+          backgroundColor: Colors.black,
+          body: SafeArea(
             child: Column(
-              children: [
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.teal),
-                    onPressed: () async {
-                      _playSound('note1.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.blueGrey),
-                    onPressed: () async {
-                      _playSound('note2.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.pink),
-                    onPressed: () async {
-                      _playSound('note3.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.purple),
-                    onPressed: () async {
-                      _playSound('note4.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.green),
-                    onPressed: () async {
-                      _playSound('note5.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(primary: Colors.orangeAccent),
-                    onPressed: () async {
-                      _playSound('note6.wav');
-                    },
-                    child: const Text('Play')),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.blue),
-                    onPressed: () async {
-                      _playSound('note7.wav');
-                    },
-                    child: const Text('Play')),
+              children: <Widget>[
+                buildKey('note1.wav', Colors.blue),
+                buildKey('note2.wav', Colors.green),
+                buildKey('note3.wav', Colors.yellow),
+                buildKey('note4.wav', Colors.amber.shade300),
+                buildKey('note5.wav', Colors.amber.shade600),
+                buildKey('note6.wav', Colors.amber.shade800),
+                buildKey('note7.wav', Colors.red),
               ],
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
